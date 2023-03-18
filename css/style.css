@@ -1,0 +1,76 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+
+   
+    background-color: black;
+}
+
+.sidenav{
+
+    z-index: 999999;
+}
+
+.list ul{
+
+    color: white;
+}
+
+.firstfooter p{
+
+    color: white;
+
+}
+
+.secoundhalf img{
+
+    width: 90px;
+    height: 90px;
+}
+
+.menu{
+
+    font-size: 30px;
+}
+
+.mclose{
+
+    font-size: 30px;
+}
+
+.firsthalf{
+
+    width: 0%;
+}
+
+.meals img{
+
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.meals{
+
+    width: 300px;
+    height: 350px;
+    
+}
+.layer{
+top: 100%;
+
+   background-color: rgba(167, 166, 166, 0.4);
+    transition: 0.5s;
+
+}
+.meals:hover>.layer{
+
+    top: 14%;
+
+}
+
