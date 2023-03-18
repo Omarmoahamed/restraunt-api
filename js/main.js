@@ -4,7 +4,7 @@ let c_button = document.querySelector(".mclose");
 let categ_button = document.querySelector(".categorybutton");
 let area_button = document.querySelector(".area")
 
-
+let ing_button = document.querySelector(".ingredient")
 
 
 
@@ -42,6 +42,18 @@ $(area_button).click(function(){
 
 
 })
+
+
+$(ing_button).click(function(){
+
+    ing();
+    $(".details").addClass("d-none");
+    $(".main").removeClass("d-none");
+
+
+})
+
+
 
 
 $(".searchbutton").click(function(){
@@ -319,5 +331,76 @@ console.log(cartoona);
     let areameals = await response.json();
     console.log(areameals.meals)
     showmealsfirstpage(areameals.meals);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  async function ing()
+  {
+    let response = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?i=list");
+    let ing = await response.json();
+    console.log(ing.meals);
+    showing(ing.meals);
+  }
+
+
+  function showing(arr){
+
+    let cartoona  = ``;
+
+    for(let i =0 ; arr.length > i;i++ ){
+
+        cartoona += `<div class="meals col-md-3 position-relative overflow-hidden text-center text-white my-5 bg-danger" data-id="${arr[i].strIngredient} ">
+                
+        <h3 data-id="${arr[i].strIngredient}">${arr[i].strIngredient}</h3>
+        <p data-id="${arr[i].strIngredient}">${arr[i].strDescription}</p>
+        </div>
+        `
+       
+    }
+console.log(cartoona);
+    document.querySelector(".firstpage").innerHTML = cartoona;
+
+    let categ_card = document.querySelectorAll(".meals");
+    console.log(categ_card);
+    for(let i=0; categ_card.length>i;i++)
+    {
+        categ_card[i].addEventListener("click",(e) =>{
+
+            ing_filter(e.target.getAttribute("data-id"));
+
+        })
+
+        categ_card[i].children[1].addEventListener("click",(e) =>{
+
+            ing_filter(e.target.getAttribute("data-id"));
+
+        })
+    }
+  }
+
+
+  async function ing_filter(input)
+  {
+    let response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${input}`)
+    let ingmeals = await response.json();
+    console.log(ingmeals.meals)
+    showmealsfirstpage(ingmeals.meals);
   }
 
